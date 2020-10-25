@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2724CB1F2546285B0000DCA3 /* LivestreamsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB1E2546285B0000DCA3 /* LivestreamsApp.swift */; };
-		2724CB212546285B0000DCA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB202546285B0000DCA3 /* ContentView.swift */; };
+		2724CB1F2546285B0000DCA3 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB1E2546285B0000DCA3 /* Main.swift */; };
+		2724CB212546285B0000DCA3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB202546285B0000DCA3 /* MainView.swift */; };
 		2724CB232546285D0000DCA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB222546285D0000DCA3 /* Assets.xcassets */; };
 		2724CB262546285D0000DCA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB252546285D0000DCA3 /* Preview Assets.xcassets */; };
+		2724CB3E254633DC0000DCA3 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB3D254633DC0000DCA3 /* Launch.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2724CB1B2546285B0000DCA3 /* Livestreams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livestreams.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2724CB1E2546285B0000DCA3 /* LivestreamsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivestreamsApp.swift; sourceTree = "<group>"; };
-		2724CB202546285B0000DCA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2724CB1E2546285B0000DCA3 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		2724CB202546285B0000DCA3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2724CB222546285D0000DCA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2724CB252546285D0000DCA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2724CB272546285D0000DCA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2724CB3A2546338A0000DCA3 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		2724CB3D254633DC0000DCA3 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +39,8 @@
 		2724CB122546285B0000DCA3 = {
 			isa = PBXGroup;
 			children = (
-				2724CB1D2546285B0000DCA3 /* Livestreams */,
+				2724CB1D2546285B0000DCA3 /* Shared */,
+				2724CB31254631A10000DCA3 /* iOS */,
 				2724CB1C2546285B0000DCA3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,16 +53,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2724CB1D2546285B0000DCA3 /* Livestreams */ = {
+		2724CB1D2546285B0000DCA3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2724CB1E2546285B0000DCA3 /* LivestreamsApp.swift */,
-				2724CB202546285B0000DCA3 /* ContentView.swift */,
+				2724CB202546285B0000DCA3 /* MainView.swift */,
 				2724CB222546285D0000DCA3 /* Assets.xcassets */,
-				2724CB272546285D0000DCA3 /* Info.plist */,
 				2724CB242546285D0000DCA3 /* Preview Content */,
 			);
-			path = Livestreams;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		2724CB242546285D0000DCA3 /* Preview Content */ = {
@@ -67,6 +69,17 @@
 				2724CB252546285D0000DCA3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2724CB31254631A10000DCA3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2724CB1E2546285B0000DCA3 /* Main.swift */,
+				2724CB272546285D0000DCA3 /* Info.plist */,
+				2724CB3A2546338A0000DCA3 /* App.entitlements */,
+				2724CB3D254633DC0000DCA3 /* Launch.storyboard */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +141,7 @@
 			files = (
 				2724CB262546285D0000DCA3 /* Preview Assets.xcassets in Resources */,
 				2724CB232546285D0000DCA3 /* Assets.xcassets in Resources */,
+				2724CB3E254633DC0000DCA3 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2724CB212546285B0000DCA3 /* ContentView.swift in Sources */,
-				2724CB1F2546285B0000DCA3 /* LivestreamsApp.swift in Sources */,
+				2724CB212546285B0000DCA3 /* MainView.swift in Sources */,
+				2724CB1F2546285B0000DCA3 /* Main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,13 +279,14 @@
 		2724CB2B2546285D0000DCA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Livestreams/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Shared/Preview Content\"";
 				DEVELOPMENT_TEAM = 8BYRL5LF6J;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Livestreams/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -287,13 +302,14 @@
 		2724CB2C2546285D0000DCA3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Livestreams/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Shared/Preview Content\"";
 				DEVELOPMENT_TEAM = 8BYRL5LF6J;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Livestreams/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
