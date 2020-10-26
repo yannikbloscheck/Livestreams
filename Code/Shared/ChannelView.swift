@@ -2,20 +2,20 @@ import Foundation
 import SwiftUI
 
 
-/// Main view for the application
+/// View for a channel
 /// - Copyright: © Yannik Bloscheck - All rights reserved
 /// - Since: 2020-10-25
-struct MainView: View {
+struct ChannelView: View {
 	// MARK: Properties
 	
-	/// The prayers
-	@ObservedObject var channels: Channels = Channels.shared
+	/// The channel
+	let channel: Channel
 	
 	
 	
 	/// The actual view
 	var body: some View {
-		ChannelsView(channels: channels)
+		Text(channel.name)
 	}
 }
 
