@@ -10,14 +10,18 @@
 		2724CB1F2546285B0000DCA3 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB1E2546285B0000DCA3 /* Main.swift */; };
 		2724CB212546285B0000DCA3 /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB202546285B0000DCA3 /* ChannelsView.swift */; };
 		2724CB232546285D0000DCA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB222546285D0000DCA3 /* Assets.xcassets */; };
-		2724CB262546285D0000DCA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB252546285D0000DCA3 /* Preview Assets.xcassets */; };
 		2724CB3E254633DC0000DCA3 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2724CB3D254633DC0000DCA3 /* Launch.storyboard */; };
 		2724CB422546399D0000DCA3 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB412546399D0000DCA3 /* ChannelView.swift */; };
 		2724CB4525463A2D0000DCA3 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB4425463A2D0000DCA3 /* Channel.swift */; };
 		2724CB4825463A450000DCA3 /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB4725463A450000DCA3 /* Channels.swift */; };
 		2724CB4D25463E1B0000DCA3 /* Livestream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB4C25463E1B0000DCA3 /* Livestream.swift */; };
-		2724CB51254641F90000DCA3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB50254641F90000DCA3 /* Color.swift */; };
 		2724CB5525464B580000DCA3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2724CB5425464B580000DCA3 /* MainView.swift */; };
+		272BAA562546E392005A480E /* LivestreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272BAA552546E392005A480E /* LivestreamView.swift */; };
+		27E324D82546DFDA00623D10 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E324D62546DFDA00623D10 /* AVFoundation.framework */; };
+		27E324D92546DFDA00623D10 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E324D72546DFDA00623D10 /* AVKit.framework */; };
+		27E324DB2546DFE200623D10 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E324DA2546DFE200623D10 /* MediaPlayer.framework */; };
+		27E65C8C2549DC9A003E61F7 /* ChannelCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E65C8B2549DC9A003E61F7 /* ChannelCellView.swift */; };
+		27E65C91254A12D2003E61F7 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E65C90254A12D2003E61F7 /* VideoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +29,6 @@
 		2724CB1E2546285B0000DCA3 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		2724CB202546285B0000DCA3 /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
 		2724CB222546285D0000DCA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2724CB252546285D0000DCA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2724CB272546285D0000DCA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2724CB3A2546338A0000DCA3 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		2724CB3D254633DC0000DCA3 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
@@ -33,8 +36,13 @@
 		2724CB4425463A2D0000DCA3 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		2724CB4725463A450000DCA3 /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
 		2724CB4C25463E1B0000DCA3 /* Livestream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Livestream.swift; sourceTree = "<group>"; };
-		2724CB50254641F90000DCA3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2724CB5425464B580000DCA3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		272BAA552546E392005A480E /* LivestreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivestreamView.swift; sourceTree = "<group>"; };
+		27E324D62546DFDA00623D10 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		27E324D72546DFDA00623D10 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		27E324DA2546DFE200623D10 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		27E65C8B2549DC9A003E61F7 /* ChannelCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellView.swift; sourceTree = "<group>"; };
+		27E65C90254A12D2003E61F7 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E324D92546DFDA00623D10 /* AVKit.framework in Frameworks */,
+				27E324DB2546DFE200623D10 /* MediaPlayer.framework in Frameworks */,
+				27E324D82546DFDA00623D10 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +65,7 @@
 				2724CB1D2546285B0000DCA3 /* Shared */,
 				2724CB31254631A10000DCA3 /* iOS */,
 				2724CB1C2546285B0000DCA3 /* Products */,
+				27E324D52546DFDA00623D10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,31 +80,24 @@
 		2724CB1D2546285B0000DCA3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2724CB1E2546285B0000DCA3 /* Main.swift */,
 				2724CB5425464B580000DCA3 /* MainView.swift */,
 				2724CB202546285B0000DCA3 /* ChannelsView.swift */,
+				27E65C8B2549DC9A003E61F7 /* ChannelCellView.swift */,
 				2724CB412546399D0000DCA3 /* ChannelView.swift */,
+				272BAA552546E392005A480E /* LivestreamView.swift */,
+				27E65C90254A12D2003E61F7 /* VideoView.swift */,
 				2724CB4725463A450000DCA3 /* Channels.swift */,
 				2724CB4425463A2D0000DCA3 /* Channel.swift */,
 				2724CB4C25463E1B0000DCA3 /* Livestream.swift */,
-				2724CB5825464C170000DCA3 /* Extensions */,
 				2724CB222546285D0000DCA3 /* Assets.xcassets */,
-				2724CB242546285D0000DCA3 /* Preview Content */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		2724CB242546285D0000DCA3 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2724CB252546285D0000DCA3 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		2724CB31254631A10000DCA3 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				2724CB1E2546285B0000DCA3 /* Main.swift */,
 				2724CB272546285D0000DCA3 /* Info.plist */,
 				2724CB3A2546338A0000DCA3 /* App.entitlements */,
 				2724CB3D254633DC0000DCA3 /* Launch.storyboard */,
@@ -100,12 +105,14 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		2724CB5825464C170000DCA3 /* Extensions */ = {
+		27E324D52546DFDA00623D10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2724CB50254641F90000DCA3 /* Color.swift */,
+				27E324DA2546DFE200623D10 /* MediaPlayer.framework */,
+				27E324D62546DFDA00623D10 /* AVFoundation.framework */,
+				27E324D72546DFDA00623D10 /* AVKit.framework */,
 			);
-			path = Extensions;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +172,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2724CB262546285D0000DCA3 /* Preview Assets.xcassets in Resources */,
 				2724CB232546285D0000DCA3 /* Assets.xcassets in Resources */,
 				2724CB3E254633DC0000DCA3 /* Launch.storyboard in Resources */,
 			);
@@ -180,11 +186,13 @@
 			files = (
 				2724CB422546399D0000DCA3 /* ChannelView.swift in Sources */,
 				2724CB5525464B580000DCA3 /* MainView.swift in Sources */,
-				2724CB51254641F90000DCA3 /* Color.swift in Sources */,
 				2724CB4D25463E1B0000DCA3 /* Livestream.swift in Sources */,
 				2724CB4825463A450000DCA3 /* Channels.swift in Sources */,
 				2724CB4525463A2D0000DCA3 /* Channel.swift in Sources */,
 				2724CB212546285B0000DCA3 /* ChannelsView.swift in Sources */,
+				27E65C91254A12D2003E61F7 /* VideoView.swift in Sources */,
+				272BAA562546E392005A480E /* LivestreamView.swift in Sources */,
+				27E65C8C2549DC9A003E61F7 /* ChannelCellView.swift in Sources */,
 				2724CB1F2546285B0000DCA3 /* Main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,11 +320,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CODE_SIGN_ENTITLEMENTS = iOS/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
-				DEVELOPMENT_ASSET_PATHS = "\"Shared/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8BYRL5LF6J;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -337,11 +345,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CODE_SIGN_ENTITLEMENTS = iOS/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
-				DEVELOPMENT_ASSET_PATHS = "\"Shared/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8BYRL5LF6J;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;

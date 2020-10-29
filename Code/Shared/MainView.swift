@@ -15,7 +15,8 @@ struct MainView: View {
 	
 	/// The actual view
 	var body: some View {
-		ChannelsView(channels: channels)
+		ChannelsView()
+		.environmentObject(channels)
 	}
 }
 

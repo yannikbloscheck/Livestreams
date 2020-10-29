@@ -8,7 +8,7 @@ struct Livestream: Equatable, Codable {
 	// MARK: Properties
 	
 	/// The title
-	var title: String
+	var title: String? = nil
 	
 	
 	
