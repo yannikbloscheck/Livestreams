@@ -40,8 +40,9 @@ class Channels: NSObject, ObservableObject {
 		}
 	}
 	
-	private(set) var player: AVPlayer
 	
+	
+	/// The current channel
 	var current: Channel? = nil {
 		didSet {
 			if let channel = current {
@@ -52,6 +53,9 @@ class Channels: NSObject, ObservableObject {
 		}
 	}
 	
+	
+	
+	/// The currently selected  livestream
 	var livestream: Livestream? = nil {
 		didSet {
 			if let livestream = livestream {
@@ -62,7 +66,7 @@ class Channels: NSObject, ObservableObject {
 						player.play()
 					}
 					
-					refreshNowPlaying()
+					refreshPlayingInfo()
 				}
 			} else {
 				player.replaceCurrentItem(with: nil)
@@ -71,6 +75,8 @@ class Channels: NSObject, ObservableObject {
 	}
 	
 	
+	
+	/// If a video is playing
 	var isPlaying = false {
 		didSet {
 			if isPlaying {
@@ -86,59 +92,11 @@ class Channels: NSObject, ObservableObject {
 	}
 	
 	
-	func refreshNowPlaying() {
-		if let channel = current, let livestream = livestream {
-			let cover = MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600)) { (_) -> UIImage in
-				return channel.cover
-			}
-			
-			if let title = livestream.title {
-				MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPNowPlayingInfoPropertyIsLiveStream:true, MPMediaItemPropertyTitle: channel.name, MPMediaItemPropertyArtist: title , MPMediaItemPropertyArtwork: cover]
-			} else {
-				MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPNowPlayingInfoPropertyIsLiveStream:true, MPMediaItemPropertyTitle: channel.name, MPMediaItemPropertyArtwork: cover]
-			}
-		}
-	}
+	
+	/// The video player
+	private(set) var player: AVPlayer
 	
 	
-	
-	/// The preferred livestream
-	func preferredLivestream(for channel: Channel) -> Livestream {
-		if let preferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String], let preferredVersionTitle = preferredVersionTitles[String(channel.id)] {
-			var versions = channel.livestreams
-			versions.removeAll { (livestream) -> Bool in
-				return livestream.title != preferredVersionTitle
-			}
-			if let preferredVersion = versions.first {
-				return preferredVersion
-			}
-		}
-		
-		return channel.livestreams.first!
-	}
-	
-	func preferLivestream(_ livestream: Livestream, for channel: Channel) {
-		var preferredVersionTitles: [String:String] = [:]
-		if let currentPreferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String] {
-			preferredVersionTitles = currentPreferredVersionTitles
-		}
-		preferredVersionTitles[String(channel.id)] = livestream.title
-		
-		UserDefaults.standard.setValue(preferredVersionTitles, forKey: "Preferred Versions")
-	}
-	
-	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if keyPath == "rate", let player = object as? AVPlayer {
-			if isPlaying == true, player.rate == 0 {
-				isPlaying = false
-			} else if isPlaying == false, player.rate > 0 {
-				isPlaying = true
-			}
-			
-			refreshNowPlaying()
-		}
-	}
 	
 	
 	// MARK: Initialization
@@ -191,6 +149,8 @@ class Channels: NSObject, ObservableObject {
 	}
 	
 	
+	
+	/// Deinitalizing
 	deinit {
 		player.removeObserver(self, forKeyPath: "rate")
 		
@@ -199,6 +159,79 @@ class Channels: NSObject, ObservableObject {
 		MPNowPlayingInfoCenter.default().nowPlayingInfo = [:]
 		
 		UIApplication.shared.endReceivingRemoteControlEvents()
+	}
+	
+	
+	
+	
+	// MARK: Methods
+	
+	/// Get notified when the value for key path of the source object changes
+	/// - Parameter keyPath: The key path
+	/// - Parameter object: The source object of the key path
+	/// - Parameter change: The change
+	/// - Parameter context: The context
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if keyPath == "rate", let player = object as? AVPlayer {
+			if isPlaying == true, player.rate == 0 {
+				isPlaying = false
+			} else if isPlaying == false, player.rate > 0 {
+				isPlaying = true
+			}
+			
+			refreshPlayingInfo()
+		}
+	}
+	
+	
+	
+	/// Refresh the playing info
+	func refreshPlayingInfo() {
+		if let channel = current, let livestream = livestream {
+			let cover = MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600)) { (_) -> UIImage in
+				return channel.cover
+			}
+			
+			if let title = livestream.title {
+				MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPNowPlayingInfoPropertyIsLiveStream:true, MPMediaItemPropertyTitle: channel.name, MPMediaItemPropertyArtist: title , MPMediaItemPropertyArtwork: cover]
+			} else {
+				MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPNowPlayingInfoPropertyIsLiveStream:true, MPMediaItemPropertyTitle: channel.name, MPMediaItemPropertyArtwork: cover]
+			}
+		}
+	}
+	
+	
+	
+	/// Get the preferred livestream for a channel
+	/// - Parameter channel: The channel
+	/// - Returns: The preferred livestream for a channel
+	func preferredLivestream(for channel: Channel) -> Livestream {
+		if let preferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String], let preferredVersionTitle = preferredVersionTitles[String(channel.id)] {
+			var versions = channel.livestreams
+			versions.removeAll { (livestream) -> Bool in
+				return livestream.title != preferredVersionTitle
+			}
+			if let preferredVersion = versions.first {
+				return preferredVersion
+			}
+		}
+		
+		return channel.livestreams.first!
+	}
+	
+	
+	
+	/// Set the preferred livestream for a channel
+	/// - Parameter livestream: The livestream
+	/// - Parameter channel: The channel
+	func preferLivestream(_ livestream: Livestream, for channel: Channel) {
+		var preferredVersionTitles: [String:String] = [:]
+		if let currentPreferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String] {
+			preferredVersionTitles = currentPreferredVersionTitles
+		}
+		preferredVersionTitles[String(channel.id)] = livestream.title
+		
+		UserDefaults.standard.setValue(preferredVersionTitles, forKey: "Preferred Versions")
 	}
 }
 

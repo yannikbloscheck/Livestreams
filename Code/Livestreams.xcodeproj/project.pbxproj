@@ -22,6 +22,7 @@
 		27E324DB2546DFE200623D10 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E324DA2546DFE200623D10 /* MediaPlayer.framework */; };
 		27E65C8C2549DC9A003E61F7 /* ChannelCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E65C8B2549DC9A003E61F7 /* ChannelCellView.swift */; };
 		27E65C91254A12D2003E61F7 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E65C90254A12D2003E61F7 /* VideoView.swift */; };
+		27E65C9C254A4302003E61F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27E65C9E254A4302003E61F7 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		27E324DA2546DFE200623D10 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		27E65C8B2549DC9A003E61F7 /* ChannelCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellView.swift; sourceTree = "<group>"; };
 		27E65C90254A12D2003E61F7 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		27E65C9D254A4302003E61F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		27E65C9F254A4305003E61F7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 				2724CB4725463A450000DCA3 /* Channels.swift */,
 				2724CB4425463A2D0000DCA3 /* Channel.swift */,
 				2724CB4C25463E1B0000DCA3 /* Livestream.swift */,
+				27E65C9E254A4302003E61F7 /* Localizable.strings */,
 				2724CB222546285D0000DCA3 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -156,6 +160,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 2724CB122546285B0000DCA3;
 			productRefGroup = 2724CB1C2546285B0000DCA3 /* Products */;
@@ -173,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2724CB232546285D0000DCA3 /* Assets.xcassets in Resources */,
+				27E65C9C254A4302003E61F7 /* Localizable.strings in Resources */,
 				2724CB3E254633DC0000DCA3 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +204,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27E65C9E254A4302003E61F7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27E65C9D254A4302003E61F7 /* en */,
+				27E65C9F254A4305003E61F7 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2724CB282546285D0000DCA3 /* Debug */ = {
