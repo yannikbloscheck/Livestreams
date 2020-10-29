@@ -13,6 +13,11 @@ struct ChannelsView: View {
 	
 	
 	
+	/// A timer to refresh the program every half minute
+	private var timer = Timer.publish(every: 30, on: .main, in: .default).autoconnect()
+	
+	
+	
 	/// The actual view
 	var body: some View {
 		NavigationView {
@@ -26,6 +31,7 @@ struct ChannelsView: View {
 							.navigationBarBackButtonHidden(true)
 						) {
 							ChannelCellView(channel: channel)
+							.environmentObject(channels)
 						}
 					}
 					.onMove { fromOffsets, toOffset in
@@ -52,6 +58,9 @@ struct ChannelsView: View {
 			}
 		}
 		.colorScheme(.dark)
+		.onReceive(timer) { (timer) in
+			channels.objectWillChange.send()
+		}
 	}
 }
 

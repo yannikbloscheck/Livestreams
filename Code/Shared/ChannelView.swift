@@ -40,7 +40,7 @@ struct ChannelView: View {
 			
 			if channel.livestreams.count > 1 {
 				for livestream in channel.livestreams {
-					let button = ActionSheet.Button.default(Text((livestream == channels.preferredLivestream(for: channel) ? "✓ " : "") + (livestream.title ?? "Unknown"))) {
+					let button = ActionSheet.Button.default(Text((livestream == channel.preferredLivestream ? "✓ " : "") + (livestream.title ?? "Unknown"))) {
 						channels.preferLivestream(livestream, for: channel)
 						channels.livestream = livestream
 						channels.objectWillChange.send()
@@ -105,12 +105,14 @@ struct ChannelView: View {
 				.aspectRatio(contentMode: .fill)
 				
 				HStack {
-					Text("20:00")
+					Text(channel.currentShow?.time ?? "")
 					.font(.title3)
 					.bold()
+					.lineLimit(1)
 					
-					Text("Tageschau")
+					Text(channel.currentShow?.title ?? "")
 					.font(.title3)
+					.lineLimit(1)
 					
 					Spacer()
 					
@@ -134,27 +136,22 @@ struct ChannelView: View {
 				
 				ScrollView(.vertical, showsIndicators: false) {
 					LazyVStack(alignment: .leading, spacing: 10) {
-						HStack {
-							Text("20:15")
-							.font(.footnote)
-							.bold()
-							
-							Text("Tatort")
-							.font(.footnote)
-						}
-						
-						HStack {
-							Text("21:45")
-							.font(.footnote)
-							.bold()
-							
-							Text("Tagesthemen")
-							.font(.footnote)
+						ForEach(channel.nextShows) { show in
+							HStack {
+								Text(show.time)
+								.font(.footnote)
+								.bold()
+								.lineLimit(1)
+								
+								Text(show.title)
+								.font(.footnote)
+								.lineLimit(1)
+							}
 						}
 					}
 					.foregroundColor(.accentColor)
 					.padding([.top, .bottom], 20)
-					.padding([.leading, .trailing], 36)
+					.padding([.leading, .trailing], 32)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.background(channel.secondaryColor)

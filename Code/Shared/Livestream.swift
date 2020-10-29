@@ -13,6 +13,6 @@ struct Livestream: Equatable, Codable {
 	
 	
 	/// The url
-	var url: URL
+	let url: URL
 }
 

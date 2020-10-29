@@ -14,14 +14,20 @@ struct Main: App {
 	
 	
 	
+	/// The channels
+	@ObservedObject var channels: Channels = Channels.shared
+	
+	
+	
 	/// The actual scene
 	var body: some Scene {
 		WindowGroup {
-			MainView()
+			ChannelsView()
+			.environmentObject(channels)
 		}
 		.onChange(of: scenePhase) { phase in
 			if phase == .active {
-				/// TODO: Refresh programm
+				channels.refreshProgram()
 			}
 		}
 	}

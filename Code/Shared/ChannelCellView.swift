@@ -8,6 +8,11 @@ import SwiftUI
 struct ChannelCellView: View {
 	// MARK: Properties
 	
+	/// The channels
+	@EnvironmentObject var channels: Channels
+	
+	
+	
 	/// The channel
 	var channel: Channel
 	
@@ -23,21 +28,26 @@ struct ChannelCellView: View {
 			
 			VStack(alignment: .leading, spacing: 5) {
 				HStack {
-					Text("20:00")
+					Text(channel.currentShow?.title == nil ? "" : "Now")
 					.font(.footnote)
 					.bold()
+					.lineLimit(1)
 					
-					Text("Tageschau")
+					Text(channel.currentShow?.title ?? "")
+					.lineLimit(1)
 					.font(.footnote)
+					.lineLimit(1)
 				}
 				
 				HStack {
-					Text("20:15")
+					Text(channel.nextShow?.time ?? "")
 					.font(.footnote)
 					.bold()
+					.lineLimit(1)
 					
-					Text("Tatort")
+					Text(channel.nextShow?.title ?? "")
 					.font(.footnote)
+					.lineLimit(1)
 				}
 			}
 		}

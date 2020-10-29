@@ -34,6 +34,7 @@ class Channels: NSObject, ObservableObject {
 				return channel.id
 			}
 			UserDefaults.standard.setValue(channelIds, forKey: "Channels")
+			
 			DispatchQueue.main.async {
 				self.objectWillChange.send()
 			}
@@ -46,7 +47,7 @@ class Channels: NSObject, ObservableObject {
 	var current: Channel? = nil {
 		didSet {
 			if let channel = current {
-				livestream = preferredLivestream(for: channel)
+				livestream = channel.preferredLivestream
 			} else {
 				livestream = nil
 			}
@@ -185,8 +186,27 @@ class Channels: NSObject, ObservableObject {
 	
 	
 	
+	/// Set the preferred livestream for a channel
+	/// - Parameter livestream: The livestream
+	/// - Parameter channel: The channel
+	func preferLivestream(_ livestream: Livestream, for channel: Channel) {
+		var preferredVersionTitles: [String:String] = [:]
+		if let currentPreferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String] {
+			preferredVersionTitles = currentPreferredVersionTitles
+		}
+		preferredVersionTitles[String(channel.id)] = livestream.title
+		
+		UserDefaults.standard.setValue(preferredVersionTitles, forKey: "Preferred Versions")
+		
+		DispatchQueue.main.async {
+			self.objectWillChange.send()
+		}
+	}
+	
+	
+	
 	/// Refresh the playing info
-	func refreshPlayingInfo() {
+	private func refreshPlayingInfo() {
 		if let channel = current, let livestream = livestream {
 			let cover = MPMediaItemArtwork(boundsSize: CGSize(width: 600, height: 600)) { (_) -> UIImage in
 				return channel.cover
@@ -202,36 +222,26 @@ class Channels: NSObject, ObservableObject {
 	
 	
 	
-	/// Get the preferred livestream for a channel
-	/// - Parameter channel: The channel
-	/// - Returns: The preferred livestream for a channel
-	func preferredLivestream(for channel: Channel) -> Livestream {
-		if let preferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String], let preferredVersionTitle = preferredVersionTitles[String(channel.id)] {
-			var versions = channel.livestreams
-			versions.removeAll { (livestream) -> Bool in
-				return livestream.title != preferredVersionTitle
+	/// Refresh the program
+	func refreshProgram() {
+		if let url = URL(string: "https://api.yannikbloscheck.com/livestreams/2.0/program/upcoming/") {
+			var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 20)
+			request.addValue("Livestreams", forHTTPHeaderField: "App")
+			request.addValue("D3567655h78tiv4gh28t6bgdo763rg650r5r5b69chy644r54t", forHTTPHeaderField: "Token")
+			
+			let task = URLSession.shared.dataTask(with: request) { (data, _, _) in
+				let jsonDecoder = JSONDecoder()
+				jsonDecoder.dateDecodingStrategy = .iso8601
+				if let json = data, let program = try? jsonDecoder.decode(Dictionary<String,Array<Show>>.self, from: json), let programData = try? PropertyListEncoder().encode(program), let programDefaults = UserDefaults(suiteName: "com.yannikbloscheck.Livestreams.Program") {
+					programDefaults.set(programData, forKey: "Channels")
+						
+					DispatchQueue.main.async {
+						self.objectWillChange.send()
+					}
+				}
 			}
-			if let preferredVersion = versions.first {
-				return preferredVersion
-			}
+			task.resume()
 		}
-		
-		return channel.livestreams.first!
-	}
-	
-	
-	
-	/// Set the preferred livestream for a channel
-	/// - Parameter livestream: The livestream
-	/// - Parameter channel: The channel
-	func preferLivestream(_ livestream: Livestream, for channel: Channel) {
-		var preferredVersionTitles: [String:String] = [:]
-		if let currentPreferredVersionTitles = UserDefaults.standard.dictionary(forKey: "Preferred Versions") as? [String:String] {
-			preferredVersionTitles = currentPreferredVersionTitles
-		}
-		preferredVersionTitles[String(channel.id)] = livestream.title
-		
-		UserDefaults.standard.setValue(preferredVersionTitles, forKey: "Preferred Versions")
 	}
 }
 
