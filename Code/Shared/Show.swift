@@ -24,7 +24,7 @@ struct Show: Identifiable, Equatable, Codable {
 	/// The time part of the date
 	var time: String {
 		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "HH:mm"
+		dateFormatter.dateFormat = "H:mm"
 		return dateFormatter.string(from: date)
 	}
 	

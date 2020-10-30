@@ -38,6 +38,7 @@ struct ChannelCellView: View {
 					.bold()
 					.lineLimit(1)
 				}
+				.frame(minWidth: 44, idealWidth: 44)
 				
 				VStack(alignment: .leading, spacing: 5) {
 					Text(channel.currentShow?.title ?? "")

@@ -144,16 +144,19 @@ struct ChannelView: View {
 								.font(.footnote)
 								.bold()
 								.lineLimit(1)
+								.frame(minWidth: 58, idealWidth: 58, maxWidth: .infinity, alignment: .trailing)
 								
 								Text(show.title)
 								.font(.footnote)
 								.lineLimit(1)
+								.frame(maxWidth: .infinity, alignment: .leading)
+								.layoutPriority(1)
 							}
 						}
 					}
 					.foregroundColor(.accentColor)
-					.padding([.top, .bottom], 20)
-					.padding([.leading, .trailing], 32)
+					.padding([.top, .bottom], 18)
+					.padding([.leading, .trailing], 10)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				
