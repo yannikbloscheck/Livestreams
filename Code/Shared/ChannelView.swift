@@ -83,11 +83,13 @@ struct ChannelView: View {
 					HStack {
 						Button {
 							presentationMode.wrappedValue.dismiss()
+							
+							showSidebar()
 						} label: {
 							VStack {
 								Spacer()
 								
-								if horizontalSizeClass != .regular {
+								if UIDevice.current.orientation.isPortrait || UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait ?? false {
 									Image(systemName: "chevron.backward")
 								}
 								
@@ -154,14 +156,30 @@ struct ChannelView: View {
 					.padding([.leading, .trailing], 32)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(channel.secondaryColor)
 				
 				Spacer()
 			}
+			.background(channel.secondaryColor)
 			.edgesIgnoringSafeArea([.bottom])
 		}
 		.onAppear() {
 			channels.current = channel
+		}
+	}
+	
+	
+	
+	
+	// MARK: Methods
+	
+	/// Show the sidebar
+	func showSidebar() {
+		for window in UIApplication.shared.windows {
+			for viewController in window.rootViewController?.children ?? [] {
+				if let splitViewController = viewController as? UISplitViewController {
+					splitViewController.show(.primary)
+				}
+			}
 		}
 	}
 }

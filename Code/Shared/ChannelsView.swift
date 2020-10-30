@@ -22,32 +22,36 @@ struct ChannelsView: View {
 	var body: some View {
 		NavigationView {
 			GeometryReader(content: { geometry in
-				List {
-					ForEach(channels.all) { channel in
-						NavigationLink(destination:
-							ChannelView(channel: channel)
-							.environmentObject(channels)
-							.navigationBarHidden(true)
-							.navigationBarBackButtonHidden(true)
-						) {
-							ChannelCellView(channel: channel)
-							.environmentObject(channels)
+				ZStack {
+					List {
+						ForEach(channels.all) { channel in
+							NavigationLink(destination:
+								ChannelView(channel: channel)
+								.environmentObject(channels)
+								.navigationBarHidden(true)
+								.navigationBarBackButtonHidden(true)
+							) {
+								ChannelCellView(channel: channel)
+								.environmentObject(channels)
+							}
 						}
+						.onMove { fromOffsets, toOffset in
+							channels.all.move(fromOffsets: fromOffsets, toOffset: toOffset)
+						}
+						.listRowBackground(Color.black)
 					}
-					.onMove { fromOffsets, toOffset in
-						channels.all.move(fromOffsets: fromOffsets, toOffset: toOffset)
+					.listStyle(PlainListStyle())
+					.navigationBarHidden(true)
+					
+					VStack {
+						Color.primary
+						.colorScheme(.light)
+						.frame(width: geometry.size.width, height: max(0, geometry.safeAreaInsets.top-1), alignment: .topLeading)
+						.edgesIgnoringSafeArea(.top)
+						
+						Spacer()
 					}
 				}
-				.listStyle(PlainListStyle())
-				.navigationBarHidden(true)
-				.overlay(VStack{
-					Color.primary
-					.colorScheme(.light)
-					.frame(width: geometry.size.width, height: max(0, geometry.safeAreaInsets.top-1), alignment: .topLeading)
-					.edgesIgnoringSafeArea(.top)
-					
-					Spacer()
-				})
 			})
 			
 			if let channel = channels.all.first {
@@ -55,11 +59,30 @@ struct ChannelsView: View {
 				.environmentObject(channels)
 				.navigationBarHidden(true)
 				.navigationBarBackButtonHidden(true)
+				.onAppear {
+					showSidebar()
+				}
 			}
 		}
 		.colorScheme(.dark)
 		.onReceive(timer) { (timer) in
 			channels.objectWillChange.send()
+		}
+	}
+	
+	
+	
+	
+	// MARK: Methods
+	
+	/// Show the sidebar
+	func showSidebar() {
+		for window in UIApplication.shared.windows {
+			for viewController in window.rootViewController?.children ?? [] {
+				if let splitViewController = viewController as? UISplitViewController {
+					splitViewController.show(.primary)
+				}
+			}
 		}
 	}
 }
