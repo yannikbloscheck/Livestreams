@@ -26,8 +26,6 @@ struct Main: App {
 			.environmentObject(channels)
 		}
 		.onChange(of: scenePhase) { phase in
-			UIScrollView.appearance(for: UITraitCollection(traitsFrom: [UITraitCollection(userInterfaceIdiom: .pad), UITraitCollection(horizontalSizeClass: .compact)]), whenContainedInInstancesOf: [UISplitViewController.self]).backgroundColor = UIColor.black
-			
 			if phase == .active {
 				channels.refreshProgram()
 			}

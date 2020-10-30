@@ -38,14 +38,12 @@ struct ChannelsView: View {
 						.onMove { fromOffsets, toOffset in
 							channels.all.move(fromOffsets: fromOffsets, toOffset: toOffset)
 						}
-						.listRowBackground(Color.black)
 					}
 					.listStyle(PlainListStyle())
 					.navigationBarHidden(true)
 					
 					VStack {
-						Color.primary
-						.colorScheme(.light)
+						Color(UIColor.systemGroupedBackground)
 						.frame(width: geometry.size.width, height: max(0, geometry.safeAreaInsets.top-1), alignment: .topLeading)
 						.edgesIgnoringSafeArea(.top)
 						
