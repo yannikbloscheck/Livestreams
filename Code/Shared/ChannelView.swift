@@ -40,7 +40,7 @@ struct ChannelView: View {
 			
 			if channel.livestreams.count > 1 {
 				for livestream in channel.livestreams {
-					let button = ActionSheet.Button.default(Text((livestream == channel.preferredLivestream ? "✓ " : "") + (livestream.title ?? "Unknown"))) {
+					let button = ActionSheet.Button.default(Text(livestream == channel.preferredLivestream ? "✓ \(livestream.title ?? "Unknown")   " : (livestream.title ?? "Unknown"))) {
 						channels.preferLivestream(livestream, for: channel)
 						channels.livestream = livestream
 						channels.objectWillChange.send()
@@ -120,6 +120,9 @@ struct ChannelView: View {
 					
 					if channel.livestreams.count > 1 {
 						Button {
+							UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(channel.primaryColor)
+							UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).overrideUserInterfaceStyle = .light
+							
 							isPresentingLivestreamChooser = true
 						} label: {
 							Image(systemName: "rectangle.stack.fill")
@@ -128,7 +131,6 @@ struct ChannelView: View {
 							ActionSheet(title: Text("Choose Version"), message: nil, buttons: livestreamChooserButtons)
 								
 						}
-						
 					}
 				}
 				.foregroundColor(.accentColor)
