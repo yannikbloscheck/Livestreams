@@ -38,7 +38,7 @@ struct ChannelCellView: View {
 					.bold()
 					.lineLimit(1)
 				}
-				.frame(minWidth: 44, idealWidth: 44)
+				.frame(minWidth: 44, idealWidth: 44, maxWidth: .infinity, alignment: .trailing)
 				
 				VStack(alignment: .leading, spacing: 5) {
 					Text(channel.currentShow?.title ?? "")
@@ -50,6 +50,8 @@ struct ChannelCellView: View {
 					.font(.footnote)
 					.lineLimit(1)
 				}
+				.frame(maxWidth: .infinity, alignment: .leading)
+				.layoutPriority(1)
 			}
 		}
 	}
