@@ -5,5 +5,4 @@ A simple app to display publicly available livestreams including their upcoming 
 <img src="Screenshot.png" alt="Screenshot" width="602" height="410"/>
 
 ***
-*Version 2.0.3*  
 © Yannik Bloscheck - All rights reserved
