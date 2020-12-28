@@ -30,10 +30,14 @@ struct ChannelsView: View {
 								.environmentObject(channels)
 								.navigationBarHidden(true)
 								.navigationBarBackButtonHidden(true)
-							) {
+							, tag:
+								channel
+							, selection:
+								$channels.selected
+							,label: {
 								ChannelCellView(channel: channel)
 								.environmentObject(channels)
-							}
+							})
 						}
 						.onMove { fromOffsets, toOffset in
 							channels.all.move(fromOffsets: fromOffsets, toOffset: toOffset)

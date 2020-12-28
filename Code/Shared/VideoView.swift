@@ -20,6 +20,7 @@ struct VideoView: UIViewControllerRepresentable {
 	func makeUIViewController(context: Context) -> AVPlayerViewController {
 		let playerController =  AVPlayerViewController()
 		playerController.player = player
+		playerController.canStartPictureInPictureAutomaticallyFromInline = true
 		playerController.updatesNowPlayingInfoCenter = false
 		return playerController
 	}

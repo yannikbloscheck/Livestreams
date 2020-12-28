@@ -43,8 +43,24 @@ class Channels: NSObject, ObservableObject {
 	
 	
 	
+	/// The current channel for selction
+	/// - Note: This is a temporary fix for a system bug with the list possibly losing selection on scroll
+	var selected: Channel? {
+		get {
+			return current
+		}
+		
+		set {
+			if let channel = newValue {
+				current = channel
+			}
+		}
+	}
+	
+	
+	
 	/// The current channel
-	var current: Channel? = nil {
+	@Published var current: Channel? = nil {
 		didSet {
 			if let channel = current {
 				livestream = channel.preferredLivestream
@@ -57,11 +73,14 @@ class Channels: NSObject, ObservableObject {
 	
 	
 	/// The currently selected  livestream
-	var livestream: Livestream? = nil {
+	@Published var livestream: Livestream? = nil {
 		didSet {
 			if let livestream = livestream {
 				if livestream != oldValue {
-					player.replaceCurrentItem(with: AVPlayerItem(url: livestream.url))
+					player.removeObserver(self, forKeyPath: "rate")
+					player.replaceCurrentItem(with: nil)
+					player = AVPlayer(url: livestream.url)
+					player.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
 					
 					if isPlaying {
 						player.play()

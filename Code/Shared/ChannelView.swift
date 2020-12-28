@@ -167,9 +167,6 @@ struct ChannelView: View {
 			.background(channel.secondaryColor)
 			.edgesIgnoringSafeArea([.bottom])
 		}
-		.onAppear() {
-			channels.current = channel
-		}
 	}
 	
 	
