@@ -31,6 +31,6 @@ struct VideoView: UIViewControllerRepresentable {
 	/// - Parameter playerController: The video controller
 	/// - Parameter context: The context
 	func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
-		// Do nothing
+		playerController.player = player
 	}
 }

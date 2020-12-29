@@ -42,8 +42,6 @@ struct ChannelView: View {
 				for livestream in channel.livestreams {
 					let button = ActionSheet.Button.default(Text(livestream == channel.preferredLivestream ? "✓ \(livestream.title ?? "Unknown")   " : (livestream.title ?? "Unknown"))) {
 						channels.preferLivestream(livestream, for: channel)
-						channels.livestream = livestream
-						channels.objectWillChange.send()
 					}
 					buttons.append(button)
 				}

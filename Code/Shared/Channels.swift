@@ -89,7 +89,10 @@ class Channels: NSObject, ObservableObject {
 					refreshPlayingInfo()
 				}
 			} else {
+				player.removeObserver(self, forKeyPath: "rate")
 				player.replaceCurrentItem(with: nil)
+				player = AVPlayer()
+				player.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
 			}
 		}
 	}
@@ -217,8 +220,8 @@ class Channels: NSObject, ObservableObject {
 		
 		UserDefaults.standard.setValue(preferredVersionTitles, forKey: "Preferred Versions")
 		
-		DispatchQueue.main.async {
-			self.objectWillChange.send()
+		if channel == current {
+			self.livestream = livestream
 		}
 	}
 	
