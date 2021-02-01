@@ -132,7 +132,7 @@ class Channels: NSObject, ObservableObject {
 		
 		player.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions(rawValue: 0), context: nil)
 		
-		if let first = all.first {
+		if let first = all.first, UIDevice.current.userInterfaceIdiom != .phone {
 			current = first
 		}
 		
